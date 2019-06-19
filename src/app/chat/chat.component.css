@@ -140,6 +140,13 @@ input[type="text"] {
   child-align: left;
 }
 
+.message-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  child-align: left;
+}
+
 .user-message {
   margin-top: 10px;
   align-self: flex-start;
