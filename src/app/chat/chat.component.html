@@ -1,3 +1,36 @@
-<p>
-  chat works!
-</p>
+<div class="App">
+  <aside class="sidebar left-sidebar">
+    <section lass="room-members">
+      <h4>Room Users</h4>
+      <ul class="user-list">
+        <li *ngFor="let user of users">
+          <span class="presence online"></span>
+          <span>{{ user }}</span>
+        </li>
+      </ul>
+    </section>
+  </aside>
+  <main class="chat-window">
+
+    <header class="chat-header">
+      <h4>Chat</h4>
+      <span class="participants"></span>
+    </header>
+    <section class="chat-session">
+      <ul class="message-list">
+        <li class="user-message" *ngFor="let message of messages">
+          <span class="user-id">{{ message.user }}</span>
+          <span>{{ message.messageText }}</span>
+        </li>
+      </ul>
+    </section>
+
+    <footer class="chat-footer">
+      <form class="message-form" (ngSubmit)='sendMessage()'>
+        <input class="message-input" placeholder="Type a message. Hit Enter to send" type="text" name="message"
+               [(ngModel)]="newMessage"/>
+      </form>
+    </footer>
+  </main>
+  <aside class="sidebar right-sidebar"></aside>
+</div>
