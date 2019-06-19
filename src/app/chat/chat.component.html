@@ -19,8 +19,10 @@
     <section class="chat-session">
       <ul class="message-list">
         <li class="user-message" *ngFor="let message of messages">
-          <span class="user-id">{{ message.user }}</span>
-          <span>{{ message.messageText }}</span>
+          <div class="message-wrapper">
+            <span class="user-id">{{ message.user }}</span>
+            <span>{{ message.messageText }}</span>
+          </div>
         </li>
       </ul>
     </section>
