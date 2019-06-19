@@ -156,9 +156,20 @@ input[type="text"] {
   display: block;
 }
 
+.message-body{
+  background: #d0d4d0;
+  padding:5px;
+  min-height:15px;
+  margin-bottom:5px;
+  position:relative;
+  border-radius:5px;
+  word-break: break-all;
+}
+
 .user-id {
-  font-weight: bold;
+  font-weight: lighter;
   align-self: flex-start;
+  color: #c5cbcc;
 }
 
 .chat-footer {
