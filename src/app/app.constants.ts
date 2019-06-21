@@ -1,2 +1,2 @@
 
-export const SERVER_API_URL = 'localhost:5000/api/';
+export const SERVER_API_URL = 'http://localhost:5000/api/';
