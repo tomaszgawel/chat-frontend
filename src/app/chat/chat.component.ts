@@ -35,9 +35,7 @@ export class ChatComponent implements OnInit {
     model.messageText = newMessage;
     model.user = StoreService.getInstance().username;
     this.chatservice.sendMessage(model).subscribe(data => {
-      if (data.body.code === 'ok') {
-        this.messages.push(model);
-      }
+      console.log(data);
     });
     this.newMessage = '';
   }
@@ -45,17 +43,18 @@ export class ChatComponent implements OnInit {
 
   checkWhoIsOnline() {
     this.chatservice.checkWhoIsOnline().subscribe(data => {
-      console.log(data.body.online);
-      console.log(data);
       this.users = data.body.online;
-      console.log(this.users);
     });
   }
 
   getNewMassages() {
     this.chatservice.getNewMassages().subscribe(data => {
-      console.log(data);
-      this.messages.concat(data.body);
+      if (data.body !== null) {
+        console.log(data.body);
+        for (const msg of data.body) {
+          this.messages.push(msg);
+        }
+      }
     });
   }
 
