@@ -12,7 +12,7 @@ type EntityResponseType = HttpResponse<MessageModel>;
   providedIn: 'root'
 })
 export class ChatService {
-  public resourceUrl = SERVER_API_URL + 'message';
+  public resourceUrl = SERVER_API_URL + 'sendmessage';
 
   constructor(protected http: HttpClient) {
 
