@@ -43,7 +43,6 @@ export class ChatService {
   public logout(model: LogoutModel) {
     return this.http
       .post<LogoutModel>(this.logoutUrl, model, {observe: 'response'})
-      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
 

@@ -47,7 +47,7 @@ export class ChatComponent implements OnInit {
     model.logout = true;
     this.chatservice.logout(model).subscribe(data => {
       console.log(data);
-    })
+    });
     this.router.navigate(['/']);
   }
 
