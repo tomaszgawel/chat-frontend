@@ -10,10 +10,10 @@
       </ul>
     </section>
     <div class="logout-button-wrapper">
-<!--      <button mat-raised-button class="logout-button" color="primary" (click)="login()">Login</button>-->
+      <!--      <button mat-raised-button class="logout-button" color="primary" (click)="login()">Login</button>-->
       <button mat-raised-button class="logout-button" color="primary" (click)="logout()">Logout</button>
 
-<!--      <button class="logout-button">Logout</button>-->
+      <!--      <button class="logout-button">Logout</button>-->
     </div>
   </aside>
   <main class="chat-window">
@@ -21,13 +21,40 @@
       <h4>Chat</h4>
       <span class="participants"></span>
     </header>
-    <section class="chat-session">
+    <section class="chat-session" id="chat-session" #scroll>
       <ul class="message-list">
         <li class="user-message" *ngFor="let message of messages">
-          <div class="message-wrapper">
-            <span class="user-id">{{ message.user }}</span>
-            <span class="message-body">{{ message.messageText }}</span>
-          </div>
+
+          <div *ngIf="isServer(message.user); then serverBlock else userBlock"></div>
+
+          <ng-template #serverBlock>
+            <div class="message-wrapper">
+              <span class="user-id">{{ message.user }}</span>
+              <span class="message-body-server">{{ message.messageText }}</span>
+            </div>
+          </ng-template>
+
+          <ng-template #userBlock>
+
+
+            <div *ngIf="isMe(message.user); then meBlock else userBlock"></div>
+
+            <ng-template #meBlock>
+              <div class="message-wrapper-me">
+                <span class="user-id">{{ message.user }}</span>
+                <span class="message-body-me">{{ message.messageText }}</span>
+              </div>
+            </ng-template>
+
+            <ng-template #userBlock>
+              <div class="message-wrapper">
+                <span class="user-id">{{ message.user }}</span>
+                <span class="message-body">{{ message.messageText }}</span>
+              </div>
+            </ng-template>
+
+          </ng-template>
+
         </li>
       </ul>
     </section>

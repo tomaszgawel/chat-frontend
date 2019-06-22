@@ -3,7 +3,6 @@
   height: 100vh;
   overflow: hidden;
   display: flex;
-  border: 1px solid #ccc;
   color: #333;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   margin: 0;
@@ -75,7 +74,7 @@ input[type="text"] {
 }
 
 .room.active {
-  background-color: #11D771;
+  background-color: #7cb342;
   color: #333;
 }
 
@@ -129,8 +128,11 @@ input[type="text"] {
 
 .chat-session {
   flex-grow: 1;
+  flex-direction: row;
   padding: 10px 20px;
-  overflow-y: auto;
+  scroll-behavior: smooth;
+  scroll-snap-align: end;
+  overflow: scroll;
 }
 
 .message-list {
@@ -147,9 +149,35 @@ input[type="text"] {
   child-align: left;
 }
 
+.message-wrapper-me{
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+}
+
+
+.message-body-me{
+  background: #3c54fe;
+  color: #ffffff;
+  padding:5px;
+  min-height:15px;
+  margin-bottom:5px;
+  justify-content: flex-end;
+  align-items: flex-end;
+  border-radius:5px;
+  word-break: break-all;
+}
+
+
+.server-block{
+  background: #d02120;
+  color: #ffffff;
+}
+
 .user-message {
   margin-top: 10px;
   align-self: flex-start;
+  display: flex;
 }
 
 .user-message span {
@@ -158,6 +186,17 @@ input[type="text"] {
 
 .message-body{
   background: #d0d4d0;
+  padding:5px;
+  min-height:15px;
+  margin-bottom:5px;
+  position:relative;
+  border-radius:5px;
+  word-break: break-all;
+}
+
+.message-body-server{
+  background: #d02120;
+  color: #ffffff;
   padding:5px;
   min-height:15px;
   margin-bottom:5px;
