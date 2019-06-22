@@ -3,6 +3,8 @@ import {StoreService} from '../store.service';
 import {MessageModel} from './message.model';
 import {ChatService} from '../chat.service';
 import {interval} from 'rxjs';
+import {Router} from '@angular/router';
+import {LogoutModel} from './logout.model';
 
 @Component({
   selector: 'app-chat',
@@ -15,7 +17,7 @@ export class ChatComponent implements OnInit {
   messages: MessageModel[] = [];
   newMessage: string;
 
-  constructor(private chatservice: ChatService) {
+  constructor(private chatservice: ChatService, private router: Router) {
   }
 
   ngOnInit() {
@@ -38,6 +40,15 @@ export class ChatComponent implements OnInit {
       console.log(data);
     });
     this.newMessage = '';
+  }
+  logout() {
+    const model = new LogoutModel();
+    model.username = StoreService.getInstance().username;
+    model.logout = true;
+    this.chatservice.logout(model).subscribe(data => {
+      console.log(data);
+    });
+    this.router.navigate(['/']);
   }
 
 
