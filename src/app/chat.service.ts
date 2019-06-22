@@ -5,6 +5,7 @@ import {map} from 'rxjs/operators';
 import {SERVER_API_URL} from './app.constants';
 import * as moment from 'moment';
 import {OnlineModel} from "./chat/online.model";
+import {LogoutModel} from './chat/logout.model';
 
 
 type EntityResponseType = HttpResponse<MessageModel>;
@@ -16,6 +17,7 @@ export class ChatService {
   public resourceUrl = SERVER_API_URL + 'sendmessage';
   public onlineUrl = SERVER_API_URL + 'onlineusers';
   public newMessages = SERVER_API_URL + 'messages';
+  public logoutUrl = SERVER_API_URL + 'logout';
 
   constructor(protected http: HttpClient) {
 
@@ -36,6 +38,12 @@ export class ChatService {
   public checkWhoIsOnline() {
     return this.http
       .get<OnlineModel>(this.onlineUrl, {observe: 'response'});
+  }
+
+  public logout(model: LogoutModel) {
+    return this.http
+      .post<LogoutModel>(this.logoutUrl, model, {observe: 'response'})
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
 
