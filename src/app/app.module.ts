@@ -13,6 +13,7 @@ import {LoginComponent} from './login/login.component';
 import {FormsModule} from '@angular/forms';
 import {ChatComponent} from './chat/chat.component';
 import {HttpClientModule} from '@angular/common/http';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -33,9 +34,10 @@ import {HttpClientModule} from '@angular/common/http';
     MatCardModule,
     MatButtonModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
-  providers: [HttpClientModule],
+  providers: [HttpClientModule, MatSnackBarModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {

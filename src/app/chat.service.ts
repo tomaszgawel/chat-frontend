@@ -4,7 +4,7 @@ import {MessageModel} from './chat/message.model';
 import {map} from 'rxjs/operators';
 import {SERVER_API_URL} from './app.constants';
 import * as moment from 'moment';
-import {OnlineModel} from "./chat/online.model";
+import {OnlineModel} from './chat/online.model';
 import {LogoutModel} from './chat/logout.model';
 
 
@@ -42,7 +42,7 @@ export class ChatService {
 
   public logout(model: LogoutModel) {
     return this.http
-      .post<LogoutModel>(this.logoutUrl, model, {observe: 'response'})
+      .post<LogoutModel>(this.logoutUrl, model, {observe: 'response'});
   }
 
 
