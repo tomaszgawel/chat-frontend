@@ -1,8 +1,8 @@
-import {AfterViewChecked, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewChecked, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {StoreService} from '../store.service';
 import {MessageModel} from './message.model';
 import {ChatService} from '../chat.service';
-import {interval} from 'rxjs';
+import {interval, Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 import {LogoutModel} from './logout.model';
 
@@ -11,11 +11,13 @@ import {LogoutModel} from './logout.model';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit, AfterViewChecked {
+export class ChatComponent implements OnInit, AfterViewChecked, OnDestroy {
   @ViewChild('scroll', {static: false}) private myScrollContainer: ElementRef;
   users: string[] = [];
   messages: MessageModel[] = [];
   newMessage: string;
+  subscriptionOnline: Subscription;
+  subscriptionMess: Subscription;
 
   // tslint:disable-next-line:variable-name
   constructor(private chatservice: ChatService, private router: Router) {
@@ -29,10 +31,11 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     } else {
       console.log(StoreService.getInstance().access);
       console.log(StoreService.getInstance().username);
-      interval(100).subscribe(() => this.checkWhoIsOnline());
-      interval(100).subscribe(() => this.getNewMassages());
+      this.subscriptionOnline = interval(100).subscribe(() => this.checkWhoIsOnline());
+      this.subscriptionMess = interval(100).subscribe(() => this.getNewMassages());
     }
   }
+
   ngAfterViewChecked() {
     this.scrollToBottom();
   }
@@ -97,6 +100,11 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   isMe(message) {
     return message === StoreService.getInstance().username;
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptionMess.unsubscribe();
+    this.subscriptionOnline.unsubscribe();
   }
 
 }
