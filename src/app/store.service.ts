@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StoreService {
 
@@ -11,9 +11,9 @@ export class StoreService {
   private static instance: StoreService = null;
 
   // tslint:disable-next-line:variable-name
-  private _username: string;
+  private _username = '';
   // tslint:disable-next-line:variable-name
-  private _access: string;
+  private _access = '';
 
   get username(): string {
     return this._username;

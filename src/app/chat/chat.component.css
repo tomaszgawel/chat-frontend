@@ -3,7 +3,6 @@
   height: 100vh;
   overflow: hidden;
   display: flex;
-  border: 1px solid #ccc;
   color: #333;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   margin: 0;
@@ -75,7 +74,7 @@ input[type="text"] {
 }
 
 .room.active {
-  background-color: #11D771;
+  background-color: #7cb342;
   color: #333;
 }
 
@@ -129,8 +128,11 @@ input[type="text"] {
 
 .chat-session {
   flex-grow: 1;
+  flex-direction: row;
   padding: 10px 20px;
-  overflow-y: auto;
+  scroll-behavior: smooth;
+  scroll-snap-align: end;
+  overflow: scroll;
 }
 
 .message-list {
@@ -140,18 +142,73 @@ input[type="text"] {
   child-align: left;
 }
 
+.message-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  child-align: left;
+}
+
+.message-wrapper-me{
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+}
+
+
+.message-body-me{
+  background: #3c54fe;
+  color: #ffffff;
+  padding:5px;
+  min-height:15px;
+  margin-bottom:5px;
+  justify-content: flex-end;
+  align-items: flex-end;
+  border-radius:5px;
+  word-break: break-all;
+}
+
+
+.server-block{
+  background: #d02120;
+  color: #ffffff;
+}
+
 .user-message {
   margin-top: 10px;
   align-self: flex-start;
+  display: flex;
 }
 
 .user-message span {
   display: block;
 }
 
+.message-body{
+  background: #d0d4d0;
+  padding:5px;
+  min-height:15px;
+  margin-bottom:5px;
+  position:relative;
+  border-radius:5px;
+  word-break: break-all;
+}
+
+.message-body-server{
+  background: #d02120;
+  color: #ffffff;
+  padding:5px;
+  min-height:15px;
+  margin-bottom:5px;
+  position:relative;
+  border-radius:5px;
+  word-break: break-all;
+}
+
 .user-id {
-  font-weight: bold;
+  font-weight: lighter;
   align-self: flex-start;
+  color: #c5cbcc;
 }
 
 .chat-footer {
@@ -211,3 +268,24 @@ body{
   margin: 0;
 }
 
+.logout-button-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.logout-button {
+  width: 50%;
+  height: 40px;
+  position: absolute;
+  bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.logout-button:hover {
+  background: #784bc8;
+}
